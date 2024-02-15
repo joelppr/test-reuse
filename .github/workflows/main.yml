@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: InditexTech/gh-sherpa
-        ref: main
+        repository: joelppr/test-reuse
+        ref: non-compliant
     - name: REUSE Compliance Check SPDX
       uses: fsfe/reuse-action@v2
