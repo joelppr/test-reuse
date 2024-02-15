@@ -11,5 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: REUSE Compliance Check
+    - name: REUSE Compliance Check SPDX
       uses: fsfe/reuse-action@v2
+      with:
+        args: spdx
