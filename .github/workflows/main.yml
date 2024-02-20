@@ -34,6 +34,6 @@ jobs:
           for repo in $repos; do
             repo_name=$(basename "$repo" ".git")
             echo "Cloning and launching command in $repo_name"
-            https://$token@github.com/$org_name/$repo_name || { echo "Failed to clone $repo"; continue; }
+            git clone https://$token@github.com/$org_name/$repo_name || { echo "Failed to clone $repo"; continue; }
             (cd $repo_name && reuse lint)
           done
