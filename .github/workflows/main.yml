@@ -28,12 +28,12 @@ jobs:
           IFS=$'\n' # Cambia el separador a salto de línea
           for repo in $repos; do
             repo_name=$(basename "$repo" ".git") # Extrae el nombre del repositorio
-            echo "Cloning $repo_name"
+            echo "Cloning $org_name/$repo_name"
             # Clona el repositorio utilizando actions/checkout
             # Configura las credenciales de Git para la autenticación
             git config --global credential.helper store
             # Esto asume que el repositorio es público, si necesitas autenticación, puedes proporcionar un token personal de acceso
-            #export GIT_ASKPASS=echo
+            export GIT_ASKPASS=echo
             git clone https://$token@github.com/$org_name/$repo_name
             cd $repo_name
             echo "Running action in $repo_name"
