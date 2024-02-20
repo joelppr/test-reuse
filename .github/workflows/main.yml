@@ -29,6 +29,7 @@ jobs:
       - name: Launch Command on Repos
         run: |
           repos="${{ steps.list_repos.outputs.repos }}"
+          token="${{ secrets.GITHUB_TOKEN }}"
           org_name="InditexTech" # Reemplaza 'myOrg' con el nombre de tu organización
           for repo in $repos; do
             repo_name=$(basename "$repo" ".git")
