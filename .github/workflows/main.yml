@@ -24,7 +24,7 @@ jobs:
           token="${{ secrets.GITHUB_TOKEN }}"
           repos=$(curl -s -H "Authorization: token $token" "https://api.github.com/orgs/$org_name/repos?type=all" | jq -r '.[].ssh_url')
 
-          echo "::set-output name=repos::$repos"
+          # echo "::set-output name=repos::$repos"
 
       - name: Launch Command on Repos
         run: |
@@ -33,7 +33,7 @@ jobs:
           token="${{ secrets.GITHUB_TOKEN }}"
           org_name="InditexTech" # Reemplaza 'myOrg' con el nombre de tu organización
           for repo in $repos; do
-            # repo_name=$(basename "$repo" ".git")
+            repo_name=$(basename "$repo" ".git")
             echo "Cloning and launching command in $repo_name"
             # git clone https://$token@github.com/$org_name/$repo_name
             # (cd $repo_name && reuse lint || true)
