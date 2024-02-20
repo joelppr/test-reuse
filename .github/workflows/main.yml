@@ -31,7 +31,7 @@ jobs:
             echo "Cloning $repo_name"
             # Clona el repositorio utilizando actions/checkout
             # Esto asume que el repositorio es público, si necesitas autenticación, puedes proporcionar un token personal de acceso
-            git clone https://$token@github.com/$repo_name
+            git clone https://$token@github.com/$org_name/$repo_name
             cd $repo_name
             echo "Running action in $repo_name"
             # Ejecuta el action en el repositorio clonado
