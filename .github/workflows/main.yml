@@ -29,9 +29,10 @@ jobs:
       - name: Launch Command on Repos
         run: |
           repos="${{ steps.list_repos.outputs.repos }}"
+          org_name="InditexTech" # Reemplaza 'myOrg' con el nombre de tu organización
           for repo in $repos; do
             repo_name=$(basename "$repo" ".git")
             echo "Cloning and launching command in $repo_name"
-            git clone $repo || { echo "Failed to clone $repo"; continue; }
+            https://$token@github.com/$org_name/$repo_name || { echo "Failed to clone $repo"; continue; }
             (cd $repo_name && reuse lint)
           done
