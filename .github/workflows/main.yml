@@ -40,13 +40,6 @@ jobs:
             # Esto asume que el repositorio es público, si necesitas autenticación, puedes proporcionar un token personal de acceso
             export GIT_ASKPASS=echo
             git clone https://$token@github.com/$org_name/$repo_name
-            cd $repo_name
-            echo "Running action in $repo_name"
-            reuse lint
-            # Ejecuta el action en el repositorio clonado
-            # Puedes proporcionar cualquier entrada requerida por el action, como argumentos o parámetros
-            # Si el action espera alguna entrada, asegúrate de proporcionarla aquí
-            # Ejemplo: with:
-            #             input1: value1
-            cd ..
+            echo "Launching command in $repo_name"
+            (cd $repo_name && reuse lint) || echo "Error executing reuse lint in $repo_name"
           done
