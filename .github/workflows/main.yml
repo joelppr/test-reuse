@@ -7,7 +7,7 @@ name: REUSE Compliance Check
 on: [push, pull_request]
 
 jobs:
-  test:
+  launch_command:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,26 +20,18 @@ jobs:
       - name: List Repos
         id: list_repos
         run: |
-          org_name="InditexTech" # Cambiar por el nombre de la organización
+          org_name="InditexTech" # Reemplaza 'myOrg' con el nombre de tu organización
           token="${{ secrets.GITHUB_TOKEN }}"
-          repos=$(curl -s -H "Authorization: token $token" "https://api.github.com/orgs/$org_name/repos" | jq -r '.[].ssh_url')
+          repos=$(curl -s -H "Authorization: token $token" "https://api.github.com/orgs/$org_name/repos?type=all" | jq -r '.[].ssh_url')
 
           echo "::set-output name=repos::$repos"
 
-      - name: Clone Repos and Run Actions
+      - name: Launch Command on Repos
         run: |
           repos="${{ steps.list_repos.outputs.repos }}"
-          org_name="InditexTech" # Cambiar por el nombre de la organización
-          IFS=$'\n' # Cambia el separador a salto de línea
           for repo in $repos; do
-            repo_name=$(basename "$repo" ".git") # Extrae el nombre del repositorio
-            echo "Cloning $org_name/$repo_name"
-            # Clona el repositorio utilizando actions/checkout
-            # Configura las credenciales de Git para la autenticación
-            git config --global credential.helper store
-            # Esto asume que el repositorio es público, si necesitas autenticación, puedes proporcionar un token personal de acceso
-            export GIT_ASKPASS=echo
-            git clone https://$token@github.com/$org_name/$repo_name
-            echo "Launching command in $repo_name"
-            (cd $repo_name && reuse lint) || echo "Error executing reuse lint in $repo_name"
+            repo_name=$(basename "$repo" ".git")
+            echo "Cloning and launching command in $repo_name"
+            git clone $repo || { echo "Failed to clone $repo"; continue; }
+            (cd $repo_name && reuse lint)
           done
