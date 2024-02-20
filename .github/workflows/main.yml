@@ -17,7 +17,7 @@ jobs:
         id: list_repos
         run: |
           org_name="InditexTech" # Cambiar por el nombre de la organización
-          token="${{ secrets.GITHUB_TOKEN }}"
+          token="${{ secrets.TEST_TOKEN }}"
           repos=$(curl -s -H "Authorization: token $token" "https://api.github.com/orgs/$org_name/repos" | jq -r '.[].ssh_url')
 
           echo "::set-output name=repos::$repos"
