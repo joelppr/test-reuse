@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install reuse
+        run: |
+          pip3 install --user reuse
+
       - name: List Repos
         id: list_repos
         run: |
@@ -38,8 +42,8 @@ jobs:
             git clone https://$token@github.com/$org_name/$repo_name
             cd $repo_name
             echo "Running action in $repo_name"
+            reuse lint
             # Ejecuta el action en el repositorio clonado
-            uses: fsfe/reuse-action@v2
             # Puedes proporcionar cualquier entrada requerida por el action, como argumentos o parámetros
             # Si el action espera alguna entrada, asegúrate de proporcionarla aquí
             # Ejemplo: with:
