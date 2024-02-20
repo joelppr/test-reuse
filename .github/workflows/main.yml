@@ -33,7 +33,7 @@ jobs:
             # Configura las credenciales de Git para la autenticación
             git config --global credential.helper store
             # Esto asume que el repositorio es público, si necesitas autenticación, puedes proporcionar un token personal de acceso
-            export GIT_ASKPASS=echo
+            #export GIT_ASKPASS=echo
             git clone https://$token@github.com/$org_name/$repo_name
             cd $repo_name
             echo "Running action in $repo_name"
