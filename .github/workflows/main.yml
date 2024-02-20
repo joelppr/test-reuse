@@ -17,7 +17,7 @@ jobs:
         id: list_repos
         run: |
           org_name="InditexTech" # Cambiar por el nombre de la organización
-          token="${{ secrets.TEST_TOKEN }}"
+          token="${{ secrets.GITHUB_TOKEN }}"
           repos=$(curl -s -H "Authorization: token $token" "https://api.github.com/orgs/$org_name/repos" | jq -r '.[].ssh_url')
 
           echo "::set-output name=repos::$repos"
@@ -31,7 +31,7 @@ jobs:
             echo "Cloning $repo_name"
             # Clona el repositorio utilizando actions/checkout
             # Esto asume que el repositorio es público, si necesitas autenticación, puedes proporcionar un token personal de acceso
-            git clone $repo
+            git clone https://$token@github.com/$repo_name
             cd $repo_name
             echo "Running action in $repo_name"
             # Ejecuta el action en el repositorio clonado
