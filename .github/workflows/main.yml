@@ -20,12 +20,14 @@ jobs:
       - name: List Repos
         id: list_repos
         run: |
-          org_name="InditexTech" # Reemplaza 'myOrg' con el nombre de tu organización
+          org_name="InditexTech"
           token="${{ secrets.GITHUB_TOKEN }}"
           curl -s -H "Authorization: token $token" "https://api.github.com/orgs/$org_name/repos?type=all" | jq -r '.[].ssh_url' > repos.txt
 
       - name: Launch Command on Repos
         run: |
+          org_name="InditexTech"
+          token="${{ secrets.GITHUB_TOKEN }}"
           while IFS= read -r repo; do
             repo_name=$(basename "$repo" ".git")
             echo "Cloning and launching command in $repo_name"
