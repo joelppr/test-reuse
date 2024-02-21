@@ -29,6 +29,6 @@ jobs:
           while IFS= read -r repo; do
             repo_name=$(basename "$repo" ".git")
             echo "Cloning and launching command in $repo_name"
-            # git clone https://$token@github.com/$org_name/$repo_name
-            # (cd $repo_name && reuse lint || true)
+            git clone https://$token@github.com/$org_name/$repo_name
+            (cd $repo_name && reuse lint || true)
           done < repos.txt
