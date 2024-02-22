@@ -1,0 +1,14 @@
+name: DryRun Security Analysis
+
+on: [push]
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: DryRun Security Analysis
+      uses: dryrunsecurity/action@v1
