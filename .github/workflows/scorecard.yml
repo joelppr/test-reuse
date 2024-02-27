@@ -12,7 +12,7 @@ jobs:
       # Needed if using Code scanning alerts
       security-events: write
       # Needed for GitHub OIDC token if publish_results is true
-      id-token: write
+      # id-token: write
 
     steps:
       - name: "Checkout code"
