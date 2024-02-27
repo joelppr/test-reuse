@@ -25,7 +25,7 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          repo_token: ${{ secrets.SCORECARD_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           publish_results: true
 
      # Upload the results as artifacts (optional).
@@ -35,9 +35,3 @@ jobs:
           name: SARIF file
           path: results.sarif
           retention-days: 5
-
-      # Upload the results to GitHub's code scanning dashboard.
-      - name: "Upload to code-scanning"
-        uses: github/codeql-action/upload-sarif@47b3d888fe66b639e431abf22ebca059152f1eea
-        with:
-          sarif_file: results.sarif
