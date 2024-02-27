@@ -2,9 +2,17 @@ name: Lint repository
 on: [push]
 
 jobs:
-  repo-lint:
-    name: "repolint"
+   analysis:
+    name: Scorecard analysis
     runs-on: ubuntu-latest
+    permissions:
+      # Needed if using Code scanning alerts
+      security-events: write
+      # Needed for GitHub OIDC token if publish_results is true
+      id-token: write
+      
+#    name: "repolint"
+#    runs-on: ubuntu-latest
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v2.0.0
