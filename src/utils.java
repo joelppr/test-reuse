@@ -103,3 +103,48 @@ public class VulnerableCodeExample {
         }
     }
 }
+
+public class TotallyVulnerableCode {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Vulnerabilidad 1: Inyección de comandos
+        System.out.print("Introduce un comando para ejecutar: ");
+        String command = scanner.nextLine();
+        try {
+            Runtime.getRuntime().exec(command);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Vulnerabilidad 2: Validación insuficiente de entrada
+        System.out.print("Introduce dos números para dividir: ");
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
+        int result = num1 / num2;
+        System.out.println("Resultado de la división: " + result);
+
+        // Vulnerabilidad 3: Uso de bibliotecas inseguras
+        System.out.print("Introduce una URL para obtener datos: ");
+        String url = scanner.next();
+        try {
+            Scanner urlScanner = new Scanner(new java.net.URL(url).openStream());
+            while (urlScanner.hasNextLine()) {
+                System.out.println(urlScanner.nextLine());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Vulnerabilidad 4: Almacenamiento inseguro de contraseñas
+        System.out.print("Introduce una contraseña para autenticarte: ");
+        String inputPassword = scanner.next();
+        String hardcodedPassword = "mi_contraseña_secreta";
+        if (inputPassword.equals(hardcodedPassword)) {
+            System.out.println("Acceso concedido.");
+        } else {
+            System.out.println("Contraseña incorrecta.");
+        }
+    }
+}
