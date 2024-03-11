@@ -1,6 +1,7 @@
 ---
 sensitiveCodepaths:
   - 'src/*.py'
+  - 'src/*.java'
 allowedAuthors:
   usernames:
     - joelppr
