@@ -1,8 +1,0 @@
----
-sensitiveCodepaths:
-  - 'src/*.py'
-allowedAuthors:
-  usernames:
-    - joelppr
-notificationList:
-  - '@joelppr'
