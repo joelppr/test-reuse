@@ -28,3 +28,20 @@ def save_password(username, password):
 # ¡Recuerda que este código es solo un ejemplo educativo! No lo uses en producción sin corregir estas vulnerabilidades.
 
 # Siempre es importante revisar y auditar el código para detectar y solucionar posibles problemas de seguridad.
+
+# Ejemplo de almacenamiento de contraseña en texto claro y cifrado inseguro
+
+# Almacena la contraseña en texto claro (¡esto es inseguro!)
+plain_password = "mi_contraseña_secreta"
+
+def encrypt_password(password):
+    # Utiliza un cifrado inseguro (MD5 en este caso)
+    import hashlib
+    hashed_password = hashlib.md5(password.encode("utf-8")).hexdigest()
+    return hashed_password
+
+# Cifra la contraseña
+hashed_password = encrypt_password(plain_password)
+
+print(f"Contraseña en texto claro: {plain_password}")
+print(f"Contraseña cifrada (MD5): {hashed_password}")
