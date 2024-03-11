@@ -48,7 +48,7 @@ public class VulnerableCodeExample {
         }
     }
 
-    // Vulnerabilidad 2: Validación insuficiente de entrada
+    // Vulnerabilidad 2: Validación insuficiente de entrada 
     public static void divideNumbers(int a, int b) {
         if (b != 0) {
             int result = a / b;
