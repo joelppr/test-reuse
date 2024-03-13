@@ -6,6 +6,7 @@ def main():
     password = jklejfs"
     token = "1h4kbr23bsjl134m2lkflkfss"
     context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+    SECRET_API_KEY = "my_super_secret_api_key"
 
     # Crear un socket SSL
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
