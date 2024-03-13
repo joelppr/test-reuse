@@ -3,6 +3,7 @@ import socket
 
 def main():
     # Configurar el contexto SSL con la versión TLS 1.0
+    password = jklejfs"
     context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
 
     # Crear un socket SSL
