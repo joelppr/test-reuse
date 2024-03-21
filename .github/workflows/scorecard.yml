@@ -25,7 +25,7 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.SCORECARD_TOKEN }}
           publish_results: true
 
      # Upload the results as artifacts (optional).
