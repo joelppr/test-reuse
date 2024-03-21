@@ -27,7 +27,7 @@ jobs:
       - name: Launch Command on Repos
         run: |
           org_name="TestOrg"
-          token="${{ secrets.GITHUB_TOKEN }}"
+          token="${{ secrets.SCORECARD_TOKEN }}"
           while IFS= read -r repo; do
             repo_name=$(basename "$repo" ".git")
             echo "Cloning and launching command in $repo_name"
